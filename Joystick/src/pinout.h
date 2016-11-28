@@ -2,15 +2,9 @@
 //-----------------------------------------------------------------------------
 
 /** @file pinout.h
- *  @date   November, 2015
- *  @brief Teensy pinout assignment
- *
- *  This code is based on the LINX example firmware for use with
- *  the PJRC Teensy 3.1 with the serial interface enabled.
- *
- *  For more information see:           www.labviewmakerhub.com/linx
- *  For support visit the forums at:    www.labviewmakerhub.com/forums/linx
- *
+ *  @date   November, 2016
+ *  @brief
+
  *  @author Cooked by Vicente A. (TT)
  *  @bug No know bugs.
  */
@@ -26,49 +20,66 @@
 
 //---[ Pinout assignment: ]----------------------------------------------------
 
-/**
- *
- */
-const uint8_t YawTrimUp         (8);
 
 /**
  *
  */
-const uint8_t YawTrimDown         (8);
-
-
-/**
- *
- */
-const uint8_t PitchTrimUp         (8);
+const uint8_t YawPin                    (A0);
 
 /**
  *
  */
-const uint8_t PitchTrimDown         (8);
-
-
-/**
- *
- */
-const uint8_t RollTrimUp         (8);
+const uint8_t YawTrimUpPin              (8);
 
 /**
  *
  */
-const uint8_t RollTrimDown         (8);
+const uint8_t YawTrimDownPin            (8);
 
 /**
  *
  */
-const uint8_t ThrottleTrimUp         (8);
-
+const uint8_t PitchPin                  (A1);
 
 /**
  *
  */
-const uint8_t ThrottleTrimDown         (8);
+const uint8_t PitchTrimUpPin            (8);
 
+/**
+ *
+ */
+const uint8_t PitchTrimDownPin          (8);
+
+/**
+ *
+ */
+const uint8_t RollPin                   (A2);
+
+/**
+ *
+ */
+const uint8_t RollTrimUpPin             (8);
+
+/**
+ *
+ */
+const uint8_t RollTrimDownPin           (8);
+
+/**
+ *
+ */
+const uint8_t ThrottlePin               (A3);
+
+/**
+ *
+ */
+const uint8_t ThrottleTrimUpPin         (8);
+
+/**
+ *
+ */
+const uint8_t ThrottleTrimDownPin       (8);
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------

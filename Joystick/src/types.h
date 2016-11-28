@@ -2,7 +2,7 @@
 //-----------------------------------------------------------------------------
 
 /** @file  types.h
- *  @date  November, 2015
+ *  @date  November, 2016
  *  @brief This file contains the definitions of special data types
  *  		used in the application.
  *
@@ -61,31 +61,6 @@
 //---[ Application-specific data Types: ]-------------------------------------
 
 //---[ Global defines: ]-------------------------------------------------------
-
-/**
- * EEPROM memory addresses for PITCH calibration data
- */
-const uint8_t EEPROM_CAL_PITCH      (0);
-
-/**
- * EEPROM memory addresses for ROLL calibration data
- */
-const uint8_t EEPROM_CAL_ROLL       (EEPROM_CAL_PITCH + sizeof(float));
-
-/**
- * EEPROM memory addresses for altitude calibration data
- */
-const uint8_t EEPROM_CAL_ALTITUDE   (EEPROM_CAL_ROLL + sizeof(float));
-
-/**
- * EEPROM memory addresses for altitude calibration data
- */
-const uint8_t EEPROM_REF_ALTITUDE   (EEPROM_CAL_ALTITUDE + sizeof(float));
-
-/**
- * EEPROM memory addresses for temp calibration data
- */
-const uint8_t EEPROM_CAL_TEMP       (EEPROM_REF_ALTITUDE + sizeof(float));
 
 //---[ Useful Macros: ]--------------------------------------------------------
 
