@@ -15,40 +15,69 @@
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
+#include <Joystick.h>
+
 #include "axis.h"
+#include "EEPROMAnything.h"
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
-CAxis::CAxis(uint8_t dataPin, uint8_t trimUpPin, uint8_t trimDownPin)
+CAxis::CAxis(uint8_t axisPin,
+  uint8_t trimUpPin,
+  uint8_t trimDownPin,
+  uint8_t EEPROM_ADDR)
   :_ui8AxisPin(axisPin)
-  ,_ui8TrimUpPin(trimUpPin)
-  ,_ui8TrimDownPin(trimDownPin)
-{}
-
-//-----------------------------------------------------------------------------
-
-CAxis& CAxis::operator=(const CAxis& other)
+  ,_oTrimUpButton(trimUpPin)
+  ,_oTrimDownButton(trimDownPin)
+  ,_ui8EEPROMAddr(EEPROM_ADDR)
+  ,_i16TrimValue(0)
+  ,_i16AxisValue(0)
 {
-    if (this == &other) return *this;
-    this->_ui8AxisPin = other._ui8AxisPin;
-    this->_ui8TrimUpPin = other._ui8TrimUpPin;
-    this->_ui8TrimDownPin = other._ui8TrimDownPin;
-    return *this;
+  pinMode(_ui8AxisPin, INPUT);
+  EEPROM_readAnything(_ui8EEPROMAddr,_i16TrimValue);
 }
 
 //-----------------------------------------------------------------------------
 
-void CAxis::update(void)
+bool CAxis::update(void)
 {
-  
+  bool bRslt {false};
+  int16_t i16Value {analogRead(_ui8AxisPin)};
+
+  if(abs(i16Value - _i16AxisValue) > _iDEADZONE)
+  {
+    _i16AxisValue = i16Value;
+    bRslt = true;
+  }
+
+  if(_oTrimUpButton.is_pressed())
+  {
+    _i16TrimValue++;
+    EEPROM_writeAnything(_ui8EEPROMAddr,_i16TrimValue);
+    bRslt = true;
+  }
+
+  if(_oTrimDownButton.is_pressed())
+  {
+    _i16TrimValue--;
+    EEPROM_writeAnything(_ui8EEPROMAddr,_i16TrimValue);
+    bRslt = true;
+  }
+
+  _i16AxisValue += _i16TrimValue;
+
+  return bRslt;
 }
 
 //-----------------------------------------------------------------------------
 
-int CAxis::getValue()
-{
-  return 0;
+int CAxis::getValue(void) const{
+  if(_i16AxisValue<JOYSTICK_DEFAULT_AXIS_MINIMUM)
+    return JOYSTICK_DEFAULT_AXIS_MINIMUM;
+  if(_i16AxisValue>JOYSTICK_DEFAULT_AXIS_MAXIMUM)
+    return JOYSTICK_DEFAULT_AXIS_MAXIMUM;
+  return _i16AxisValue;
 }
 
 //-----------------------------------------------------------------------------

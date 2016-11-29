@@ -29,12 +29,12 @@ const uint8_t YawPin                    (A0);
 /**
  *
  */
-const uint8_t YawTrimUpPin              (8);
+const uint8_t YawTrimUpPin              (2);
 
 /**
  *
  */
-const uint8_t YawTrimDownPin            (8);
+const uint8_t YawTrimDownPin            (3);
 
 /**
  *
@@ -44,12 +44,12 @@ const uint8_t PitchPin                  (A1);
 /**
  *
  */
-const uint8_t PitchTrimUpPin            (8);
+const uint8_t PitchTrimUpPin            (4);
 
 /**
  *
  */
-const uint8_t PitchTrimDownPin          (8);
+const uint8_t PitchTrimDownPin          (5);
 
 /**
  *
@@ -59,12 +59,12 @@ const uint8_t RollPin                   (A2);
 /**
  *
  */
-const uint8_t RollTrimUpPin             (8);
+const uint8_t RollTrimUpPin             (6);
 
 /**
  *
  */
-const uint8_t RollTrimDownPin           (8);
+const uint8_t RollTrimDownPin           (7);
 
 /**
  *
@@ -79,7 +79,7 @@ const uint8_t ThrottleTrimUpPin         (8);
 /**
  *
  */
-const uint8_t ThrottleTrimDownPin       (8);
+const uint8_t ThrottleTrimDownPin       (9);
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------

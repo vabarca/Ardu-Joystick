@@ -62,6 +62,27 @@
 
 //---[ Global defines: ]-------------------------------------------------------
 
+/**
+ * EEPROM memory addresses for PITCH calibration data
+ */
+const uint8_t EEPROM_CAL_PITCH      (0);
+
+/**
+ * EEPROM memory addresses for ROLL calibration data
+ */
+const uint8_t EEPROM_CAL_ROLL       (EEPROM_CAL_PITCH + sizeof(int));
+
+/**
+ * EEPROM memory addresses for YAW calibration data
+ */
+const uint8_t EEPROM_CAL_YAW       (EEPROM_CAL_ROLL + sizeof(int));
+
+/**
+ * EEPROM memory addresses for THROTTLE calibration data
+ */
+const uint8_t EEPROM_CAL_THROTTLE  (EEPROM_CAL_YAW + sizeof(int));
+
+
 //---[ Useful Macros: ]--------------------------------------------------------
 
 /**

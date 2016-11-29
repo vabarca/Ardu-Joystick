@@ -26,25 +26,37 @@
 #include "WProgram.h"
 #endif
 
+#include "ButtonHandler.h"
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 
 class CAxis
 {
-  public:
-    void update(void);
-    int getValue();
-
   private:
+    const static int _iDEADZONE {10}; //1024 * 0.01
+
     uint8_t _ui8AxisPin;
-    uint8_t _ui8TrimUpPin;
-    uint8_t _ui8TrimDownPin;
+    uint8_t _ui8EEPROMAddr;
+    int16_t _i16TrimValue;
+    int16_t _i16AxisValue;
+
+    CTheUltimateDebouncer _oTrimUpButton;
+    CTheUltimateDebouncer _oTrimDownButton;
 
   //--------
 
   public:
-    CAxis(uint8_t axisPin, uint8_t trimUpPin, uint8_t trimDownPin);
-    CAxis& operator=(const CAxis& other);
+    CAxis(uint8_t axisPin,
+      uint8_t trimUpPin,
+      uint8_t trimDownPin,
+      uint8_t EEPROM_ADDR);
+
+    bool update(void);
+    int getValue(void) const;
 };
 
 //-----------------------------------------------------------------------------

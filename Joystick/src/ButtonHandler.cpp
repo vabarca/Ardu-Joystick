@@ -39,8 +39,7 @@ CButtonHandler::CButtonHandler(int p, int lp)
 
 void CButtonHandler::init()
 {
-  pinMode(_pin, INPUT);
-  digitalWrite(_pin, HIGH); // pull-up
+  pinMode(_pin, INPUT_PULLUP);
   _was_pressed = false;
   _pressed_counter = 0;
   _lastLoopTime = millis();
@@ -101,8 +100,7 @@ CTheUltimateDebouncer::CTheUltimateDebouncer(uint8_t p)
 : _button_history(0x00)
   ,_pin(p)
 {
-  pinMode(_pin, INPUT);
-  digitalWrite(_pin, HIGH); // pull-up
+  pinMode(_pin, INPUT_PULLUP);
 }
 
 //-----------------------------------------------------------------------------

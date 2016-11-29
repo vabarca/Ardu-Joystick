@@ -105,7 +105,7 @@ private:
 	int16_t                  _steeringMaximum = JOYSTICK_DEFAULT_SIMULATOR_MAXIMUM;
 
 	uint8_t                  _hidReportId;
-	uint8_t                  _hidReportSize; 
+	uint8_t                  _hidReportSize;
 
 protected:
 	int buildAndSet16BitValue(bool includeValue, int16_t value, int16_t valueMinimum, int16_t valueMaximum, int16_t actualMinimum, int16_t actualMaximum, uint8_t dataLocation[]);
@@ -116,7 +116,7 @@ public:
 	Joystick_(
 		uint8_t hidReportId = JOYSTICK_DEFAULT_REPORT_ID,
 		uint8_t joystickType = JOYSTICK_TYPE_JOYSTICK,
-        uint8_t buttonCount = JOYSTICK_DEFAULT_BUTTON_COUNT,
+    uint8_t buttonCount = JOYSTICK_DEFAULT_BUTTON_COUNT,
 		uint8_t hatSwitchCount = JOYSTICK_DEFAULT_HATSWITCH_COUNT,
 		bool includeXAxis = true,
 		bool includeYAxis = true,
@@ -132,7 +132,7 @@ public:
 
 	void begin(bool initAutoSendState = true);
 	void end();
-	
+
 	// Set Range Functions
 	inline void setXAxisRange(int16_t minimum, int16_t maximum)
 	{
