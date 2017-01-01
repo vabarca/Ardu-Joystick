@@ -44,8 +44,8 @@ class CAxis
     int16_t _i16TrimValue;
     int16_t _i16AxisValue;
 
-    CTheUltimateDebouncer _oTrimUpButton;
-    CTheUltimateDebouncer _oTrimDownButton;
+    CButtonHandler _oTrimUpButton;
+    CButtonHandler _oTrimDownButton;
 
   //--------
 

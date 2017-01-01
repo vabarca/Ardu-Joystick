@@ -20,6 +20,10 @@
 
 //---[ Pinout assignment: ]----------------------------------------------------
 
+/**
+ *
+ */
+const uint8_t LedPin                    (13);
 
 /**
  *
@@ -74,12 +78,12 @@ const uint8_t ThrottlePin               (A3);
 /**
  *
  */
-const uint8_t ThrottleTrimUpPin         (8);
+const uint8_t ThrottleTrimUpPin         (14);
 
 /**
  *
  */
-const uint8_t ThrottleTrimDownPin       (9);
+const uint8_t ThrottleTrimDownPin       (15 );
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------

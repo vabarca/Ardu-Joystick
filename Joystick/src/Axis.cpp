@@ -28,46 +28,43 @@ CAxis::CAxis(uint8_t axisPin,
   uint8_t trimDownPin,
   uint8_t EEPROM_ADDR)
   :_ui8AxisPin(axisPin)
-  ,_oTrimUpButton(trimUpPin)
-  ,_oTrimDownButton(trimDownPin)
+  ,_oTrimUpButton(trimUpPin,DEFAULT_LONGPRESS_LEN)
+  ,_oTrimDownButton(trimDownPin,DEFAULT_LONGPRESS_LEN)
   ,_ui8EEPROMAddr(EEPROM_ADDR)
   ,_i16TrimValue(0)
-  ,_i16AxisValue(0)
-{
+  ,_i16AxisValue(0){
   pinMode(_ui8AxisPin, INPUT);
   EEPROM_readAnything(_ui8EEPROMAddr,_i16TrimValue);
 }
 
 //-----------------------------------------------------------------------------
 
-bool CAxis::update(void)
-{
-  bool bRslt {false};
+bool CAxis::update(void){
+  bool bRslt{false};
   int16_t i16Value {analogRead(_ui8AxisPin)};
 
-  if(abs(i16Value - _i16AxisValue) > _iDEADZONE)
-  {
+  if(abs(i16Value - _i16AxisValue) > _iDEADZONE){
     _i16AxisValue = i16Value;
     bRslt = true;
   }
 
-  if(_oTrimUpButton.is_pressed())
-  {
+  eEvent eventTrimUp {_oTrimUpButton.handle()};
+  eEvent eventTrimDown {_oTrimDownButton.handle()};
+
+  if(eventTrimUp==EV_SHORTPRESS){
     _i16TrimValue++;
     EEPROM_writeAnything(_ui8EEPROMAddr,_i16TrimValue);
-    bRslt = true;
-  }
-
-  if(_oTrimDownButton.is_pressed())
-  {
+  }else if(eventTrimDown==EV_SHORTPRESS){
     _i16TrimValue--;
     EEPROM_writeAnything(_ui8EEPROMAddr,_i16TrimValue);
-    bRslt = true;
+  }else if(eventTrimUp==EV_LONGPRESS || eventTrimDown==EV_LONGPRESS){
+    _i16TrimValue = 0;
+    EEPROM_writeAnything(_ui8EEPROMAddr,_i16TrimValue);
   }
 
   _i16AxisValue += _i16TrimValue;
 
-  return bRslt;
+  return bRslt?true:!((eventTrimUp == EV_NONE) && (eventTrimDown == EV_NONE));
 }
 
 //-----------------------------------------------------------------------------
